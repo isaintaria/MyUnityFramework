@@ -40,6 +40,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
@@ -50,21 +53,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Archive\ArchiveLoader.cs" />
     <Compile Include="Archive\AssetArchive.cs" />
+    <Compile Include="AssetBundleCreator.cs" />
     <Compile Include="Asset\Factory\ArtAssetFactory.cs" />
     <Compile Include="Asset\Factory\AssetFactory.cs" />
     <Compile Include="Asset\AssetManager.cs" />
     <Compile Include="Asset\Factory\CachedAsset.cs" />
     <Compile Include="Asset\Factory\GameObjectFactory.cs" />
-    <Compile Include="Character\CharacterBase.cs" />
+    <Compile Include="Asset\Factory\ScriptableObjectFactory.cs" />
+    <Compile Include="Character\Core\CharacterBase.cs" />
+    <Compile Include="Character\Enemy.cs" />
+    <Compile Include="Character\Player.cs" />
+    <Compile Include="Data\CharacterStatus.cs" />
+    <Compile Include="Data\LocalData.cs" />
+    <Compile Include="Data\UserData.cs" />
+    <Compile Include="Fx\FXBase.cs" />
     <Compile Include="Game\Dungeon.cs" />
     <Compile Include="Game\GameMain.cs" />
     <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\Lobby.cs" />
+    <Compile Include="Ingame\IngameManager.cs" />
+    <Compile Include="Ingame\SpawnGroup.cs" />
+    <Compile Include="Ingame\TrackingCamera.cs" />
+    <Compile Include="Input\InputDevice\CommonInput.cs" />
+    <Compile Include="Input\InputDevice\KeyboardInput.cs" />
+    <Compile Include="Input\InputDevice\MouseInput.cs" />
+    <Compile Include="Input\InputDevice\ScreenInput.cs" />
+    <Compile Include="Input\InputManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\UIBase.cs" />
+    <Compile Include="Table\TableItems\ItemTable.cs" />
+    <Compile Include="Table\TableItems\LevelTable.cs" />
+    <Compile Include="Table\TableItems\MonsterTable.cs" />
+    <Compile Include="Table\TableItems\SpawnTable.cs" />
+    <Compile Include="Table\TableManager.cs" />
+    <Compile Include="Table\TableSerializer.cs" />
+    <Compile Include="Trigger\TargetTrigger.cs" />
+    <Compile Include="Trigger\TimeTrigger.cs" />
+    <Compile Include="Trigger\StaticTrigger.cs" />
+    <Compile Include="Trigger\Core\TriggerBase.cs" />
+    <Compile Include="UI\Core\UIBase.cs" />
+    <Compile Include="UI\Core\UIElement.cs" />
+    <Compile Include="UI\UIDungeon.cs" />
+    <Compile Include="UI\UIFade.cs" />
+    <Compile Include="UI\UILoading.cs" />
+    <Compile Include="UI\UILobbyMenu.cs" />
+    <Compile Include="UI\UILogo.cs" />
+    <Compile Include="UI\Core\UIManager.cs" />
+    <Compile Include="UI\UIOption.cs" />
+    <Compile Include="UI\UIPatch.cs" />
+    <Compile Include="UI\UITitle.cs" />
+    <Compile Include="Util\MonoSingleTon.cs" />
     <Compile Include="Util\SingleTon.cs" />
     <Compile Include="Game\Title.cs" />
+    <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

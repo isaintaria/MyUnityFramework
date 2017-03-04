@@ -1,29 +1,61 @@
-﻿using System.Collections;
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class GameManager : SingleTon<GameManager>
+public class GameManager : MonoSingleTon<GameManager>
 {
+    private UILoading   m_loading;
+
     public void ChangeScene(string name)
     {
-        // 페이드 인아웃
-        // 현재 씬에 존재하는 모든 오브젝트 삭제
-        // 가비지콜렉션 호출
-        // 로딩UI 띄우기
+        if (true == string.IsNullOrEmpty(name))
+        {
+            return;
+        }
+        
+        //화면에 있는거 다 없애버린다 
+        AssetManager.Instance.DestroyAll();
+        //UI에서 관리하는 레이어들을 클리어해준다.
+        UIManager.Instance.ClearUI();
+
+        #region fade
+        UIFade ui = UIManager.Instance.Open("UIFade") as UIFade;
+        ui.m_openCallBack = () =>
+        {
+            m_loading = UIManager.Instance.Open("UILoading") as UILoading;
+        };
+        ui.m_closeCallBack = () =>
+        {
+            StartCoroutine(StartChangeScene(name));
+        };
+        #endregion
+
     }
 
     private IEnumerator StartChangeScene(string name)
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(name);
 
-        while (asyncOperation.isDone)
+        while (false == asyncOperation.isDone)
         {
-            //asyncOperation.progress;
+            m_loading.Progress(asyncOperation.progress);
+            yield return null;
         }
+        yield return new WaitForSeconds(1.0f);
+        
+        m_loading.Progress(1.0f);
 
-        yield return new WaitForEndOfFrame();
+        #region fade
+        UIFade ui = UIManager.Instance.Open("UIFade") as UIFade;
+        ui.m_openCallBack = () =>
+        {
+            UIManager.Instance.Close("UILoading");
+        };
+        ui.m_closeCallBack = () =>
+        {
+            GameMain gameMain = GameObject.Find(SceneManager.GetActiveScene().name).GetComponent<GameMain>();
+            gameMain.OnFocus();
+        };
+        #endregion
     }
-
-
 }

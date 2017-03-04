@@ -13,6 +13,12 @@ public class GameObjectFactory<T> : AssetFactory where T : CachedAsset
 
     public override void DestroyAllAsset()
     {
+        foreach (KeyValuePair<string, List<T>> p in m_createdObjects)
+        {
+            p.Value.ForEach(rhs => Object.Destroy(rhs.gameObject));
+            p.Value.Clear();
+        }
+        m_createdObjects.Clear();
     }
 
     public void InitNode()
@@ -75,14 +81,12 @@ public class GameObjectFactory<T> : AssetFactory where T : CachedAsset
         {
             m_createdObjects[resourceName] = new List<T>();
         }
-
         m_createdObjects[resourceName].Add(tComponent);
-
+        
         if (null != tComponent.ResourceNode)
         {
             tComponent.transform.SetParent(tComponent.ResourceNode, false);
         }
-
         tComponent.OnInitialize(parameters);
         tComponent.Use();
 
