@@ -37,6 +37,7 @@ public class LocalData
         set { m_userData.Level = value; }
     }
 
+   
     public static void Load()
     {
         string savePath = Util.GetDataPath(LocalData.SaveFileName);
@@ -77,7 +78,6 @@ public class LocalData
 
         string savePath = Util.GetDataPath(LocalData.SaveFileName);
         System.IO.StreamWriter sw = null;
-
         sw = new StreamWriter(savePath);
 
         TableSerializer.Serialize<LocalData>(sw, s_intance);

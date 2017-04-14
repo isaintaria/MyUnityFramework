@@ -23,11 +23,11 @@ public abstract class TriggerBase : CachedAsset
 
         if (null == m_fx)
         {
-            string skillName = "Fireball1";
-            m_fx = Resources.Load<FXBase>(string.Format("fx/{0}", skillName));
-            m_fx = GameObject.Instantiate(m_fx);
-            m_fx.transform.parent = this.transform;
-            m_fx.transform.localPosition = Vector3.zero;
+            //string skillName = "Fireball1";
+            //m_fx = Resources.Load<FXBase>(string.Format("fx/{0}", skillName));
+            //m_fx = GameObject.Instantiate(m_fx);
+            //m_fx.transform.parent = this.transform;
+            //m_fx.transform.localPosition = Vector3.zero;
         }
     }
 

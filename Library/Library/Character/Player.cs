@@ -19,7 +19,7 @@ public class Player : CharacterBase
 
     public void Skill(int skillID)
     {
-        m_animator.SetTrigger("Attack_1");
+        m_animator.SetTrigger("Attack_2");
         AssetManager.Instance.Trigger.Retrieve("SkillAttack", this);
     }
 

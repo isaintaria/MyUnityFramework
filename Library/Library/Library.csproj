@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Archive\ArchiveLoader.cs" />
     <Compile Include="Archive\AssetArchive.cs" />
-    <Compile Include="AssetBundleCreator.cs" />
     <Compile Include="Asset\Factory\ArtAssetFactory.cs" />
     <Compile Include="Asset\Factory\AssetFactory.cs" />
     <Compile Include="Asset\AssetManager.cs" />
@@ -83,9 +82,6 @@
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table\TableItems\ItemTable.cs" />
-    <Compile Include="Table\TableItems\LevelTable.cs" />
-    <Compile Include="Table\TableItems\MonsterTable.cs" />
-    <Compile Include="Table\TableItems\SpawnTable.cs" />
     <Compile Include="Table\TableManager.cs" />
     <Compile Include="Table\TableSerializer.cs" />
     <Compile Include="Trigger\TargetTrigger.cs" />
@@ -94,15 +90,9 @@
     <Compile Include="Trigger\Core\TriggerBase.cs" />
     <Compile Include="UI\Core\UIBase.cs" />
     <Compile Include="UI\Core\UIElement.cs" />
-    <Compile Include="UI\UIDungeon.cs" />
+    <Compile Include="UI\Core\UIManager.cs" />
     <Compile Include="UI\UIFade.cs" />
     <Compile Include="UI\UILoading.cs" />
-    <Compile Include="UI\UILobbyMenu.cs" />
-    <Compile Include="UI\UILogo.cs" />
-    <Compile Include="UI\Core\UIManager.cs" />
-    <Compile Include="UI\UIOption.cs" />
-    <Compile Include="UI\UIPatch.cs" />
-    <Compile Include="UI\UITitle.cs" />
     <Compile Include="Util\MonoSingleTon.cs" />
     <Compile Include="Util\SingleTon.cs" />
     <Compile Include="Game\Title.cs" />
