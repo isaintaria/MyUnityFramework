@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-
+using UnityEngine.VR;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,11 +12,11 @@ public class PlayerController : MonoBehaviour
 
     public CharacterController cc;
     public float moveSpeed = 5f;
-    public float turnSpeed = 400f;
+    public float turnSpeed = 1.2f;
     public float jumpSpeed = 6f;
     public float jumpTime = 0.5f;
 
-    bool isMoveable = true;
+
     float elapsedJump = 0.0f;
     public void Move()
     {
@@ -26,24 +26,19 @@ public class PlayerController : MonoBehaviour
             m_animator.SetBool("IsMoving", false);
         else
             m_animator.SetBool("IsMoving", true);
-        Vector3 moveVector = new Vector3();
-        if (v != 0f)
+        Vector3 moveVector = new Vector3(h, 0, v) * moveSpeed * Time.deltaTime + Physics.gravity;        
+        cc.Move(transform.TransformDirection(moveVector));
+
+        if( IngameManager.Instance.isCameraNormalMode)
+           transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * 1.1f);
+        else
         {
-            moveVector = v * transform.forward * moveSpeed * Time.deltaTime + Physics.gravity;
-            cc.Move(moveVector);
+
         }
-        if (h != 0f)
-        {
-            moveVector = h * transform.right * moveSpeed * Time.deltaTime + Physics.gravity;
-            cc.Move(moveVector);
-        }
-
-
-
-
-        //  Debug.Log("값: "+ h.ToString() + "ㅇㅅㅇ" +v.ToString());
-
-
+            
+        
+                    
+        
     }
     public void OnEnable()
     {
@@ -54,7 +49,6 @@ public class PlayerController : MonoBehaviour
     {
         m_animator = GetComponent<Animator>();
         player = GetComponent<Player>();
-        isMoveable = IngameManager.Instance.Moveable;
     }
 
     private void Instance_EventPlayerDamaged()
@@ -72,12 +66,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if( isMoveable )
-         Move();
+        if( IngameManager.Instance.Moveable )
+        {
+            DoJump();
+            Move();
+        }
         DoAttack();
-
-        DoJump(); 
-   
+    
         nextFire += Time.deltaTime;
     }
 

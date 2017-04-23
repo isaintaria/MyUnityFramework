@@ -69,6 +69,7 @@
     <Compile Include="Data\LocalData.cs" />
     <Compile Include="Data\UserData.cs" />
     <Compile Include="Fx\FXBase.cs" />
+    <Compile Include="Game\Camera.cs" />
     <Compile Include="Game\GameMain.cs" />
     <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\Scene1.cs" />
@@ -113,8 +114,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)Library.dll" "C:\Users\isain\Desktop\Repository\PopupZombiePunch\PopupZombiePunch\Assets\Plugins"
-copy /Y "$(TargetDir)Library.pdb" "C:\Users\isain\Desktop\Repository\PopupZombiePunch\PopupZombiePunch\Assets\Plugins"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)Library.dll" "C:\Users\elsie\OneDrive\문서\PopupZombiePunch\PopupZombiePunch\Assets\Plugins"
+copy /Y "$(TargetDir)Library.pdb" "C:\Users\elsie\OneDrive\문서\PopupZombiePunch\PopupZombiePunch\Assets\Plugins"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

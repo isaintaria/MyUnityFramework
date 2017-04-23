@@ -32,16 +32,6 @@ public class NGTest : GameMain
 
     public void SetUp()
     {
-        if( IngameManager.Instance.isCamera3rd )
-        {
-            GameObject.Find("3rd Camera").SetActive(true);
-            GameObject.Find("1st Camera").SetActive(false);
-        }
-        else
-        {
-            GameObject.Find("3rd Camera").SetActive(false);
-            GameObject.Find("1st Camera").SetActive(true);
-        }
         if (IngameManager.Instance.isCamera3rd)
         {
             player = AssetManager.Instance.Character.Retrieve("Player") as Player;
@@ -50,10 +40,17 @@ public class NGTest : GameMain
         {
             player = AssetManager.Instance.Character.Retrieve("Player1st") as Player;
         }
+        if (IngameManager.Instance.isCameraNormalMode)
+        {
+            player.transform.FindChild("Camera").GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.None;
+        }
+        else
+        {
+            player.transform.FindChild("Camera").GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Both;
+        }
         uiGameScene = UIManager.Instance.Open("UIGameScene") as UIGameScene;        
         IngameManager.Instance.Moveable = false;
         spawnTable = TableManager.LoadTable<SpawnTable>("SpawnTable").Datas;
-           
 
     }
 

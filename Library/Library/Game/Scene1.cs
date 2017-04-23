@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Library.Game;
 
 public class Scene1 : GameMain
 {
@@ -16,27 +17,24 @@ public class Scene1 : GameMain
     public void SetUp()
     {
         isCamera3rd = IngameManager.Instance.isCamera3rd;
-        if (isCamera3rd)
-        {
-            GameObject.Find("3rd Camera").SetActive(true);
-            GameObject.Find("1st Camera").SetActive(false);            
-        }
-        else
-        {
-            GameObject.Find("3rd Camera").SetActive(false);
-            GameObject.Find("1st Camera").SetActive(true);
-        }
+
         if (isCamera3rd)
         {
             player = AssetManager.Instance.Character.Retrieve("Player_Scene1") as Player;
         }
         else
         {            
-            player = AssetManager.Instance.Character.Retrieve("Player_1st_Scene1") as Player;
-            GameObject.Find("1st Camera").transform.parent = player.transform;
-            GameObject.Find("1st Camera").transform.position = player.transform.position;
-            
+            player = AssetManager.Instance.Character.Retrieve("Player_1st_Scene1") as Player;    
        }
+
+        if( IngameManager.Instance.isCameraNormalMode )
+        {
+            player.transform.FindChild("Camera").GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.None;
+        }
+        else
+        {
+            player.transform.FindChild("Camera").GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Both;
+        }
     }
 
     private Player player;
