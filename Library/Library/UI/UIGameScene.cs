@@ -62,7 +62,8 @@ public class UIGameScene : UIBase
         Score += 10;
         audioSource.clip = clips[UnityEngine.Random.Range(0, 4)];
         audioSource.Play();
-        StartCoroutine(EffectRight());
+        if (EffectManager.Instance.EnabledVulbEffect)
+            StartCoroutine(EffectRight());
     }
 
     public IEnumerator EffectRight()
@@ -74,7 +75,7 @@ public class UIGameScene : UIBase
 
     public void Instance_EventPlayerDamaged()
     {
-      //  Score -= 10;
+        Score -= 10;
         audioSource.clip = clips[4];
         audioSource.Play();
     }
@@ -84,7 +85,8 @@ public class UIGameScene : UIBase
         Score += 10;
      //   audioSource.clip = clips[UnityEngine.Random.Range(0, 4)];
         audioSource.Play();
-        StartCoroutine(EffectLeft());
+        if( EffectManager.Instance.EnabledVulbEffect )
+         StartCoroutine(EffectLeft());
     }
 
     public IEnumerator EffectLeft()
@@ -123,6 +125,8 @@ public class UIGameScene : UIBase
         }
 
         IngameManager.Instance.FireGameEnd();
+        EffectManager.Instance.SendVibeLeft(false);
+        EffectManager.Instance.SendVibeRight(false);
         gameOver = true;
         gameoverOverlay.SetActive(true);
     }

@@ -28,7 +28,12 @@ public class Enemy : CharacterBase
     
     public void AttackSuccess()
     {
-        IngameManager.Instance.FirePlayerDamagedEvent();
+        NGTest test = GameObject.Find("qweqwe").GetComponent<NGTest>();
+        UIGameScene scene = GameObject.Find("UIGameScene").GetComponent<UIGameScene>();
+        test.Instance_EventPlayerDamaged();
+        scene.Instance_EventPlayerDamaged();
+        test.player.GetComponent<PlayerController>().Instance_EventPlayerDamaged();
+        
     }
             
     public override void Hitted()

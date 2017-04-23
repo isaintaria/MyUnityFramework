@@ -19,8 +19,8 @@ public class UIInfo : UIBase
         toggleCameraMode.isOn = true;
         toggleHapticOn.isOn = true;
         toggle3rd.isOn = true;
-        toggleSceneOff.isOn = true;     
     }
+    
 
     public void OK()
     {
@@ -28,10 +28,8 @@ public class UIInfo : UIBase
         IngameManager.Instance.isCamera3rd = !toggle1st.isOn;
         IngameManager.Instance.Moveable = true;
         IngameManager.Instance.isCameraNormalMode = toggleCameraMode.isOn;
-        if (!toggleSceneOn.isOn)
-            GameManager.Instance.ChangeScene("qweqwe");
-        else
-            GameManager.Instance.ChangeScene("Scene1");
+         GameManager.Instance.ChangeScene("qweqwe");
+
 
     }
 

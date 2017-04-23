@@ -40,6 +40,19 @@ public class Player : CharacterBase
         audioSource.Play();
     }
 
+    public void AttackLeft2()
+    {
+        m_animator.SetTrigger("Attack Left 2");
+        audioSource.clip = clips[0];
+        audioSource.Play();
+    }
+    public void AttackRight2()
+    {
+        m_animator.SetTrigger("Attack Right 2");
+        audioSource.clip = clips[1];
+        audioSource.Play();
+    }
+
     public void LeftAttackEvent()
     {
         if (leftAttackSkillPos != null)

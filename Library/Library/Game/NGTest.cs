@@ -32,7 +32,7 @@ public class NGTest : GameMain
         if (!IngameManager.Instance.isCameraNormalMode)
         {
             Canvas canvas = GameObject.Find("UICanvas(Clone)").GetComponent<Canvas>();
-            canvas.worldCamera = GameObject.Find("Camera").GetComponent<Camera>();            
+            canvas.worldCamera = GameObject.Find("Camera").GetComponent<Camera>();              
         }
     }
 
@@ -42,12 +42,13 @@ public class NGTest : GameMain
         if (IngameManager.Instance.isCamera3rd)
         {
             player = AssetManager.Instance.Character.Retrieve("Player") as Player;
+          
         }
         else
         {
             player = AssetManager.Instance.Character.Retrieve("Player1st") as Player;
         }
-            if (IngameManager.Instance.isCameraNormalMode)
+        if (IngameManager.Instance.isCameraNormalMode)
         {
             player.transform.FindChild("Camera").GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.None;
         }
@@ -67,22 +68,28 @@ public class NGTest : GameMain
     private void OnEnable()
     {
         vibeOn = false;
+        IngameManager.Instance.EventPlayerDamaged += Instance_EventPlayerDamaged;
+        IngameManager.Instance.EventEnemyDamagedLeft += Instance_EventEnemyDamagedLeft;
+        IngameManager.Instance.EventEnemyDamagedRight += Instance_EventEnemyDamagedRight;
+        IngameManager.Instance.GameStart += Instance_GameStart;
+    }
+
+    private void OnDisable()
+    {
+        IngameManager.Instance.EventPlayerDamaged -= Instance_EventPlayerDamaged;
+        IngameManager.Instance.EventEnemyDamagedLeft -= Instance_EventEnemyDamagedLeft;
+        IngameManager.Instance.EventEnemyDamagedRight -= Instance_EventEnemyDamagedRight;
+        IngameManager.Instance.GameStart -= Instance_GameStart;
     }
 
     private void Awake()
     {  
         SetUp();
-        IngameManager.Instance.EventPlayerDamaged += Instance_EventPlayerDamaged;
-        IngameManager.Instance.EventEnemyDamagedLeft += Instance_EventEnemyDamagedLeft;
-        IngameManager.Instance.EventEnemyDamagedRight += Instance_EventEnemyDamagedRight;
-        IngameManager.Instance.GameStart += Instance_GameStart;
-
         if (Application.isEditor)
         {
         }
 
     }
-
     
 
     public void Update()
@@ -131,7 +138,7 @@ public class NGTest : GameMain
 
 
 
-    private void Instance_EventPlayerDamaged()
+    public void Instance_EventPlayerDamaged()
     {
         player.Hitted();
         vibeOn = true;

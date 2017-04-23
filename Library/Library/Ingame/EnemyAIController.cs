@@ -58,9 +58,10 @@ public class EnemyAIController : MonoBehaviour
         if (mode)
             jumpPosition = leftJumpPosition.transform.position;
         else
-            jumpPosition = rightJumpPosition.transform.position; 
-      
-        if( mode )
+            jumpPosition = rightJumpPosition.transform.position;
+
+        int token = UnityEngine.Random.Range(0,2);
+        if( token == 0 )
         {
             spawnMin = spawnMinTimeLeft;
             spawnMax = spawnMaxTimeLeft;

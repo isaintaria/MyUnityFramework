@@ -51,10 +51,9 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    private void Instance_EventPlayerDamaged()
+    public void Instance_EventPlayerDamaged()
     {
         var fx = Resources.Load<FXBase>(string.Format("fx/{0}", "HitEffect"));
-    
         GameObject.Instantiate(fx);
     }
 
@@ -103,6 +102,16 @@ public class PlayerController : MonoBehaviour
         {
             nextFire = 0.0f;
             player.AttackRight();
+        }
+        if (Input.GetKeyDown(KeyCode.O) && nextFire > attackCooltime)
+        {
+            nextFire = 0.0f;
+            player.AttackLeft2();
+        }
+        else if (Input.GetKeyDown(KeyCode.P) && nextFire > attackCooltime)
+        {
+            nextFire = 0.0f;
+            player.AttackRight2();
         }
     }
 

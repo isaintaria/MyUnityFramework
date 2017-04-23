@@ -18,8 +18,7 @@ public class LeftAttackTrigger : TriggerBase
             if( !isHit )
             {
                 Debug.Log("몇번 일어나나 체크");
-                var fx = Resources.Load<FXBase>(string.Format("fx/{0}", "MissEffect"));
-                fx.transform.position = this.transform.position;
+                var fx = Resources.Load<FXBase>(string.Format("fx/{0}", "MissEffectLeft"));
                 GameObject.Instantiate(fx);
                 IngameManager.Instance.FireMissedAttackEvent();
             }
@@ -70,7 +69,7 @@ public class LeftAttackTrigger : TriggerBase
                     justOne = true;
                     //     Debug.Log(string.Format("{0}이 {1}에게 공격", Owner.name, target.name));
                     var fx = Resources.Load<FXBase>(string.Format("fx/{0}", "AttackEffect"));
-                    fx.transform.position = this.transform.position;
+                    fx.transform.position = target.transform.position + new Vector3(0, 2, 0);
                     GameObject.Instantiate(fx);
                     Owner.GetComponent<CharacterBase>().DamagePipeline(target);
                     UIGameScene scene = GameObject.Find("UICanvas(Clone)/Contents/UIGameScene").GetComponent<UIGameScene>();
