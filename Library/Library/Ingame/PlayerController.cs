@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private float nextFire = 0.5f;
-    public float attackCooltime = 0.5f;
+    public float attackCooltime = 0.1f;
     float h = 0.0f;
     float v = 0.0f;
     bool jump = false;

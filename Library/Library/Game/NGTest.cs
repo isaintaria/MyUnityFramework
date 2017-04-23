@@ -32,7 +32,7 @@ public class NGTest : GameMain
 
     public void SetUp()
     {
-        IngameManager.Instance.isCamera3rd = false;
+
         if (IngameManager.Instance.isCamera3rd)
         {
             player = AssetManager.Instance.Character.Retrieve("Player") as Player;
@@ -99,7 +99,7 @@ public class NGTest : GameMain
     private void CreateEnemy(bool isLeft)
     {
         int timeline = uiGameScene.ElapsedGameTime;
-        SpawnProperty prop = spawnTable[timeline/20];
+        SpawnProperty prop = spawnTable[timeline/5];
         try
         {
 

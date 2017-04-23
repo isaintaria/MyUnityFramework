@@ -61,7 +61,7 @@ public class EnemyAIController : MonoBehaviour
             jumpPosition = leftJumpPosition.transform.position;
         else
             jumpPosition = rightJumpPosition.transform.position; 
-        StartCoroutine(MoveToPlayer2());
+      
         if( mode )
         {
             spawnMin = spawnMinTimeLeft;
@@ -71,6 +71,41 @@ public class EnemyAIController : MonoBehaviour
         {
             spawnMin = spawnMinTimeRight;
             spawnMin = spawnMaxTimeRight;
+        }
+        StartCoroutine(MoveToPlayer2(spawnMin,spawnMax));
+    }
+
+    private IEnumerator MoveToPlayer2(float a, float b)
+    {
+        yield return new WaitForSeconds(UnityEngine.Random.Range(a, b));
+
+        jumpTime = 1.0f;
+        var startTime = Time.time;
+        var goPosition = jumpPosition;
+        var startPosition = transform.position;
+
+        var action = new Action<Vector3, Vector3, float>((to, from, time) =>
+        {
+            Vector3 center = (to + from) * 0.5F;
+            center -= new Vector3(0, 1, 0);
+            enemy.Look(GameObject.Find("player").transform);
+            Vector3 setRelCenter = to - center;
+            Vector3 riseRelCenter = from - center;
+            float fracComplete = (Time.time - startTime) / time;
+            transform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
+            transform.position += center;
+        });
+
+        while (Time.time - startTime < jumpTime)
+        {
+            action(goPosition, startPosition, 1.0f);
+            yield return new WaitForSeconds(0);
+        }
+
+        while (true)
+        {
+            yield return new WaitForSeconds(attackTime);
+            enemy.Attack();
         }
     }
 
