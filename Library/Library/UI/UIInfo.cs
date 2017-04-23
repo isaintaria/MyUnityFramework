@@ -32,6 +32,7 @@ public class UIInfo : UIBase
             GameManager.Instance.ChangeScene("qweqwe");
         else
             GameManager.Instance.ChangeScene("Scene1");
+
     }
 
     protected override void OpenComplete()

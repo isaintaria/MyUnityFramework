@@ -56,7 +56,7 @@ public class LeftAttackTrigger : TriggerBase
 
     public void OnTriggerEnter(Collider col)
     {
-        try
+      //  try
         {
             if (col.tag != "Enemy")
                 return;
@@ -73,15 +73,19 @@ public class LeftAttackTrigger : TriggerBase
                     fx.transform.position = this.transform.position;
                     GameObject.Instantiate(fx);
                     Owner.GetComponent<CharacterBase>().DamagePipeline(target);
+                    UIGameScene scene = GameObject.Find("UICanvas(Clone)/Contents/UIGameScene").GetComponent<UIGameScene>();
+                    scene.Instance_EventEnemyDamagedLeft();
+                    
+
                     IngameManager.Instance.FireLeftEnemyDamagedEvent();
                 }
 
             }
         }
-        catch ( Exception e)
-        {
-            Debug.Log(e.StackTrace);
-        }
+     //   catch ( Exception e)
+     //   {
+     //       Debug.Log(e.StackTrace);
+    //    }
       
     }
 }

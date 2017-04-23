@@ -75,7 +75,10 @@ public class RightAttackTrigger : TriggerBase
                     Owner.GetComponent<CharacterBase>().DamagePipeline(target);
                     IngameManager.Instance.FireRightEnemyDamagedEvent();
 
-                   
+                    UIGameScene scene = GameObject.Find("UICanvas(Clone)/Contents/UIGameScene").GetComponent<UIGameScene>();
+                    scene.Instance_EventEnemyDamagedRight();
+
+
                 }
 
             }

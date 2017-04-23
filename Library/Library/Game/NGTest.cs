@@ -9,7 +9,7 @@ public class NGTest : GameMain
     public GameObject RightPosition;
     public GameObject PlayerPosition;
     public GameObject Player1stPosition;
-    private Player player;  
+    public Player player;  
       
     public float startWait;
     public float spawnWait;
@@ -32,15 +32,17 @@ public class NGTest : GameMain
 
     public void SetUp()
     {
+        IngameManager.Instance.isCamera3rd = false;
         if (IngameManager.Instance.isCamera3rd)
         {
             player = AssetManager.Instance.Character.Retrieve("Player") as Player;
         }
         else
         {
+
             player = AssetManager.Instance.Character.Retrieve("Player1st") as Player;
         }
-        if (IngameManager.Instance.isCameraNormalMode)
+            if (IngameManager.Instance.isCameraNormalMode)
         {
             player.transform.FindChild("Camera").GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.None;
         }
@@ -100,6 +102,7 @@ public class NGTest : GameMain
         SpawnProperty prop = spawnTable[timeline/20];
         try
         {
+
         }
         catch (Exception e)
         {

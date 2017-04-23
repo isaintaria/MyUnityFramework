@@ -42,7 +42,7 @@ public class Enemy : CharacterBase
     {
         var elapsed = 0.0f;
         var life = 1.0f;
-        var pos = GameObject.Find("character/player").transform.position;
+        var pos = GameObject.Find("player").transform.position;
         Vector3 movement = transform.position - pos;
         var x = UnityEngine.Random.Range(-0.5f,0.5f);
 

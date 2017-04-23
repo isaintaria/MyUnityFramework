@@ -43,7 +43,7 @@ public class Player : CharacterBase
     public void LeftAttackEvent()
     {
         if (leftAttackSkillPos != null)
-        {            
+        {           
             AssetManager.Instance.Trigger.Retrieve("Left Attack", this,leftAttackSkillPos.transform.position);
         }
     }

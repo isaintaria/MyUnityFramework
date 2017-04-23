@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using Library.Game;
+
 
 public class Scene1 : GameMain
 {

@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Instance_EventPlayerDamaged()
     {
         var fx = Resources.Load<FXBase>(string.Format("fx/{0}", "HitEffect"));
-        fx.transform.position = this.transform.position;
+    
         GameObject.Instantiate(fx);
     }
 
@@ -71,8 +71,7 @@ public class PlayerController : MonoBehaviour
             DoJump();
             Move();
         }
-        DoAttack();
-    
+        DoAttack();    
         nextFire += Time.deltaTime;
     }
 

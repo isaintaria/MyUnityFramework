@@ -8,9 +8,11 @@ using System.Xml.Serialization;
     public class SpawnProperty
     {
         public float IdleTime { get; set; }
-        public float SpawnTimeMin { get; set; }
-        public float SpawnTimeMax { get; set; }
-    }
+        public float LeftSpawnTimeMin { get; set; }
+        public float LeftSpawnTimeMax { get; set; }
+        public float RightSpawnTimeMin { get; set; }
+        public float RightSpawnTimeMax { get; set; }
+}
     [XmlRoot("SpawnTable")]
     public class SpawnTable
     {

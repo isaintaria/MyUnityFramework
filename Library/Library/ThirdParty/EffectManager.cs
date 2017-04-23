@@ -22,8 +22,9 @@ public class EffectManager : SingleTon<EffectManager>
 
         try
         {
+            LocalData.Load();
             serialPort = new SerialPort();
-            serialPort.PortName = "COM3";
+            serialPort.PortName = LocalData.Instance.m_userData.Port;
             serialPort.BaudRate = 9600;
             serialPort.Parity = Parity.None;
             serialPort.StopBits = StopBits.One;

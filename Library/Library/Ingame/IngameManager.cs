@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-public class IngameManager : SingleTon<IngameManager>
+public class IngameManager : MonoSingleTon<IngameManager>
 {
     public delegate void HitEvent();
     public delegate void MissedEvent(bool isLeft);

@@ -16,8 +16,8 @@ public class EnemyAIController : MonoBehaviour
     GameObject playerLocation;
     public float jumpTime;
 
-    private float spawnMinTime = 1.0f;
-    private float spawnMaxTime = 3.0f;
+    private float spawnMinTimeLeft = 1.0f;
+    private float spawnMaxTimeLeft = 3.0f;
     private float attackTime = 1.0f;
 
 
@@ -26,6 +26,8 @@ public class EnemyAIController : MonoBehaviour
     private bool jump = false;
 
     public bool Mode;
+    private float spawnMinTimeRight;
+    private float spawnMaxTimeRight;
 
     public void Awake()
     {
@@ -40,8 +42,10 @@ public class EnemyAIController : MonoBehaviour
 
     public void SetSpawnProperty( SpawnProperty property )
     {
-        spawnMinTime = property.SpawnTimeMin;
-        spawnMaxTime = property.SpawnTimeMax;
+        spawnMinTimeLeft = property.LeftSpawnTimeMin;
+        spawnMaxTimeLeft = property.LeftSpawnTimeMax;
+        spawnMinTimeRight = property.RightSpawnTimeMin;
+        spawnMaxTimeRight = property.RightSpawnTimeMax;
         attackTime = property.IdleTime;
     }
 
@@ -58,8 +62,19 @@ public class EnemyAIController : MonoBehaviour
         else
             jumpPosition = rightJumpPosition.transform.position; 
         StartCoroutine(MoveToPlayer2());
+        if( mode )
+        {
+            spawnMin = spawnMinTimeLeft;
+            spawnMax = spawnMaxTimeLeft;
+        }
+        else
+        {
+            spawnMin = spawnMinTimeRight;
+            spawnMin = spawnMaxTimeRight;
+        }
     }
 
+    float spawnMin, spawnMax;
     
     public void OnEnable()
     {
@@ -89,7 +104,7 @@ public class EnemyAIController : MonoBehaviour
 
     public IEnumerator MoveToPlayer2()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(spawnMinTime, spawnMaxTime));        
+        yield return new WaitForSeconds(UnityEngine.Random.Range(spawnMin, spawnMax));        
                        
         jumpTime = 1.0f;
         var startTime = Time.time;
@@ -100,7 +115,7 @@ public class EnemyAIController : MonoBehaviour
         {
             Vector3 center = (to + from) * 0.5F;
             center -= new Vector3(0, 1, 0);
-            enemy.Look(GameObject.Find("character/player").transform);
+            enemy.Look(GameObject.Find("player").transform);
             Vector3 setRelCenter = to - center;
             Vector3 riseRelCenter = from - center;
             float fracComplete = (Time.time - startTime) / time;

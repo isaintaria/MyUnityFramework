@@ -10,31 +10,10 @@ public class LocalData
     [XmlElement("UserData")]
     public UserData m_userData = new UserData();
     #endregion
-
     private static LocalData s_intance = null;
-
     public static LocalData Instance
     {
         get { return s_intance; }
-    }
-
-    [XmlIgnore]
-    public string Nickname
-    {
-        get { return m_userData.NickName; }
-        set { m_userData.NickName = value; }
-    }
-    [XmlIgnore]
-    public int Gold
-    {
-        get { return m_userData.Gold; }
-        set { m_userData.Gold = value; }
-    }
-    [XmlIgnore]
-    public int Level
-    {
-        get { return m_userData.Level; }
-        set { m_userData.Level = value; }
     }
 
    
@@ -77,6 +56,7 @@ public class LocalData
         }
 
         string savePath = Util.GetDataPath(LocalData.SaveFileName);
+        Debug.Log(savePath);
         System.IO.StreamWriter sw = null;
         sw = new StreamWriter(savePath);
 

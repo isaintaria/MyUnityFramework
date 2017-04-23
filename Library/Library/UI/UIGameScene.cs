@@ -11,9 +11,9 @@ public class UIGameScene : UIBase
     private int score;
     
     bool gamestart = false;
-    Text timeText;
-    Text ScoreText;
-    GameObject gameoverOverlay;
+    public Text timeText;
+    public Text ScoreText;
+    public GameObject gameoverOverlay;
     private bool gameOver = false;
     private AudioSource audioSource;
 
@@ -44,42 +44,63 @@ public class UIGameScene : UIBase
 
     private void Start()
     {
-        timeText = GetComponentInChildren<Transform>().Find("TimeText").GetComponent<Text>();
-        ScoreText = GetComponentInChildren<Transform>().Find("ScoreText").GetComponent<Text>();
-        gameoverOverlay = GetComponentInChildren<Transform>().Find("GameOver").gameObject;
+        //timeText = GetComponentInChildren<Transform>().Find("TimeText").GetComponent<Text>();
+        //ScoreText = GetComponentInChildren<Transform>().Find("ScoreText").GetComponent<Text>();
+        //gameoverOverlay = GetComponentInChildren<Transform>().Find("GameOver").gameObject;
         audioSource = GetComponent<AudioSource>();
 
         IngameManager.Instance.GameStart += Instance_GameStart;
         IngameManager.Instance.GameEnd += Instance_GameEnd;
-        IngameManager.Instance.EventEnemyDamagedLeft += Instance_EventEnemyDamagedLeft;
-        IngameManager.Instance.EventEnemyDamagedRight += Instance_EventEnemyDamagedLeft;
+     //   IngameManager.Instance.EventEnemyDamagedLeft += Instance_EventEnemyDamagedLeft;
+     //   IngameManager.Instance.EventEnemyDamagedRight += Instance_EventEnemyDamagedRight;
         IngameManager.Instance.EventPlayerDamaged += Instance_EventPlayerDamaged;    
         time = gameTime;       
-
     }
 
- 
-    private void Instance_EventPlayerDamaged()
-    {
-        Score -= 10;
-        audioSource.clip = clips[4];
-        audioSource.Play();
-    }
-
-    private void Instance_EventEnemyDamagedLeft()
+    public void Instance_EventEnemyDamagedRight()
     {
         Score += 10;
         audioSource.clip = clips[UnityEngine.Random.Range(0, 4)];
         audioSource.Play();
+        StartCoroutine(EffectRight());
     }
 
-    private void Instance_GameEnd()
+    public IEnumerator EffectRight()
+    {
+        EffectManager.Instance.SendVibeRight(true);
+        yield return new WaitForSeconds(0.1f);
+        EffectManager.Instance.SendVibeRight(false);
+    }
+
+    public void Instance_EventPlayerDamaged()
+    {
+      //  Score -= 10;
+        audioSource.clip = clips[4];
+        audioSource.Play();
+    }
+
+    public void Instance_EventEnemyDamagedLeft()
+    {
+        Score += 10;
+     //   audioSource.clip = clips[UnityEngine.Random.Range(0, 4)];
+        audioSource.Play();
+        StartCoroutine(EffectLeft());
+    }
+
+    public IEnumerator EffectLeft()
+    {
+        EffectManager.Instance.SendVibeLeft(true);
+        yield return new WaitForSeconds(0.1f);
+        EffectManager.Instance.SendVibeLeft(false);
+    }
+
+    public void Instance_GameEnd()
     {
         Time.timeScale = 0.0f;
        // throw new NotImplementedException();
     }
 
-    private void Instance_GameStart()
+    public void Instance_GameStart()
     {
  //       StartCoroutine(TimerRoutine());
     }
@@ -89,7 +110,7 @@ public class UIGameScene : UIBase
         StartCoroutine(TimerRoutine());
     }
 
-    private IEnumerator TimerRoutine()
+    public IEnumerator TimerRoutine()
     {
         while (time > 0)
         {

@@ -47,7 +47,7 @@ public class GameObjectFactory<T> : AssetFactory where T : CachedAsset
         if (true == isContainsResource)
         {
             T existed = m_createdObjects[resourceName].Find(rhs => AssetState.Waiting == rhs.AssetState) as T;
-            
+
             if (null != existed)
             {
                 existed.OnInitialize(parameters);
