@@ -36,8 +36,6 @@ public class EnemyAIController : MonoBehaviour
         m_animator = GetComponent<Animator>();
         leftJumpPosition = GameObject.Find("Jump_Position_Left");
         rightJumpPosition = GameObject.Find("Jump_Position_Right");
-
-
     }
 
     public void SetSpawnProperty( SpawnProperty property )

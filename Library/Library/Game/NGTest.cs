@@ -28,6 +28,12 @@ public class NGTest : GameMain
         IngameManager.Instance.FIreGameStart();
         uiGameScene.Timer_Start();
         IngameManager.Instance.Moveable = false;
+
+        if (!IngameManager.Instance.isCameraNormalMode)
+        {
+            Canvas canvas = GameObject.Find("UICanvas(Clone)").GetComponent<Canvas>();
+            canvas.worldCamera = GameObject.Find("Camera").GetComponent<Camera>();            
+        }
     }
 
     public void SetUp()
@@ -39,7 +45,6 @@ public class NGTest : GameMain
         }
         else
         {
-
             player = AssetManager.Instance.Character.Retrieve("Player1st") as Player;
         }
             if (IngameManager.Instance.isCameraNormalMode)
@@ -50,10 +55,13 @@ public class NGTest : GameMain
         {
             player.transform.FindChild("Camera").GetComponent<Camera>().stereoTargetEye = StereoTargetEyeMask.Both;
         }
+
+       
         uiGameScene = UIManager.Instance.Open("UIGameScene") as UIGameScene;        
         IngameManager.Instance.Moveable = false;
         spawnTable = TableManager.LoadTable<SpawnTable>("SpawnTable").Datas;
 
+     
     }
 
     private void OnEnable()
