@@ -36,7 +36,7 @@ public class GameObjectFactory<T> : AssetFactory where T : CachedAsset
             m_resourceNode = new GameObject(m_nodeName);
             m_resourceNode.transform.position = Vector3.zero;
             m_resourceNode.transform.rotation = Quaternion.identity;
-            Object.DontDestroyOnLoad(m_resourceNode);
+           Object.DontDestroyOnLoad(m_resourceNode);
         }
     }
 

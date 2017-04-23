@@ -9,6 +9,7 @@ public enum AssetType
     Table,
     Trigger,
     FX,
+    Object,
 }
 
 public class AssetManager : SingleTon<AssetManager>
@@ -23,7 +24,13 @@ public class AssetManager : SingleTon<AssetManager>
         m_assetFactoryList[AssetType.Table]     = new ArtAssetFactory<TextAsset>("table");
         m_assetFactoryList[AssetType.Trigger]   = new GameObjectFactory<TriggerBase>("trigger");
         m_assetFactoryList[AssetType.FX]        = new GameObjectFactory<FXBase>("fx");
+   //     m_assetFactoryList[AssetType.Object] = new GameObjectFactory<ObjectBase>("objects");
     }
+
+//    public GameObjectFactory<ObjectBase> Object
+//    {
+//        get { return m_assetFactoryList[AssetType.Object] as GameObjectFactory<ObjectBase>; }
+//    }
 
     public GameObjectFactory<UIBase> UI
     {
@@ -62,5 +69,6 @@ public class AssetManager : SingleTon<AssetManager>
         Character.DestroyAllAsset();
         Trigger.DestroyAllAsset();
         FX.DestroyAllAsset();
+ //       Object.DestroyAllAsset();
     }
 }

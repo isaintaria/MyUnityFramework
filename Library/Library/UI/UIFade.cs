@@ -21,7 +21,7 @@ public class UIFade : UIBase
         {
             m_closeCallBack();
         }
-
+            
         m_openCallBack = null;
         m_closeCallBack = null;
     }

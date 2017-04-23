@@ -78,9 +78,6 @@ C:\Users\isain\Desktop\Repository\UnityProject\Library\Library\bin\Debug\UnityEn
 C:\Users\isain\Desktop\Repository\UnityProject\Library\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache
 C:\Users\isain\Desktop\Repository\UnityProject\Library\Library\obj\Debug\Library.dll
 C:\Users\isain\Desktop\Repository\UnityProject\Library\Library\obj\Debug\Library.pdb
-E:\Repository\NgUnityFramework\Library\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache
-E:\Repository\NgUnityFramework\Library\Library\obj\Debug\Library.dll
-E:\Repository\NgUnityFramework\Library\Library\obj\Debug\Library.pdb
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\Library.dll
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\Library.pdb
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\UnityEditor.dll
@@ -94,7 +91,9 @@ E:\Repository\NgUnityFramework\Library\Library\bin\Debug\Unity.UNetWeaver.dll
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\Unity.CecilTools.dll
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\Mono.Cecil.Pdb.dll
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\Mono.Cecil.Mdb.dll
-E:\Repository\NgUnityFramework\Library\Library\bin\Debug\EasingAnimation.pdb
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\UnityEditor.xml
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\UnityEngine.xml
 E:\Repository\NgUnityFramework\Library\Library\bin\Debug\UnityEngine.UI.xml
+E:\Repository\NgUnityFramework\Library\Library\obj\Debug\Library.dll
+E:\Repository\NgUnityFramework\Library\Library\obj\Debug\Library.pdb
+E:\Repository\NgUnityFramework\Library\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache

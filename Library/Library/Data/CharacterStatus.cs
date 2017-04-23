@@ -6,21 +6,6 @@ public class CharacterStatus
     private int m_defence   = 0;
     private int m_speed     = 0;
 
-    public CharacterStatus(LevelProperty property)
-    {
-        m_hp        = property.hp;
-        m_attack    = property.attack;
-        m_defence   = property.defence;
-        m_speed     = property.speed;
-    }
-
-    public CharacterStatus(MonsterProperty property)
-    {
-        m_hp        = property.hp;
-        m_attack    = property.attack;
-        m_defence   = property.defence;
-        m_speed     = property.speed;
-    }
 
     public int HP
     {
@@ -32,5 +17,32 @@ public class CharacterStatus
     {
         get { return m_attack; }
     }
+
+    public int Speed
+    {
+        get
+        {
+            return m_speed;
+        }
+
+        set
+        {
+            m_speed = value;
+        }
+    }
+
+    public int Defence
+    {
+        get
+        {
+            return m_defence;
+        }
+
+        set
+        {
+            m_defence = value;
+        }
+    }
+
 }
 

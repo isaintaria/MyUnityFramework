@@ -4,7 +4,7 @@ using System.Collections;
 
 public class GameManager : MonoSingleTon<GameManager>
 {
-    private UILoading   m_loading;
+    private UILoading m_loading;
 
     public void ChangeScene(string name)
     {
@@ -12,7 +12,7 @@ public class GameManager : MonoSingleTon<GameManager>
         {
             return;
         }
-        
+
         //화면에 있는거 다 없애버린다 
         AssetManager.Instance.DestroyAll();
         //UI에서 관리하는 레이어들을 클리어해준다.
@@ -21,7 +21,7 @@ public class GameManager : MonoSingleTon<GameManager>
         #region fade
         UIFade ui = UIManager.Instance.Open("UIFade") as UIFade;
         ui.m_openCallBack = () =>
-        {
+        { 
             m_loading = UIManager.Instance.Open("UILoading") as UILoading;
         };
         ui.m_closeCallBack = () =>
@@ -41,18 +41,20 @@ public class GameManager : MonoSingleTon<GameManager>
             m_loading.Progress(asyncOperation.progress);
             yield return null;
         }
-        yield return new WaitForSeconds(1.0f);
-        
+        yield return new WaitForSeconds(0.5f);
+
         m_loading.Progress(1.0f);
 
         #region fade
         UIFade ui = UIManager.Instance.Open("UIFade") as UIFade;
         ui.m_openCallBack = () =>
         {
+           
             UIManager.Instance.Close("UILoading");
         };
         ui.m_closeCallBack = () =>
         {
+            Debug.Log("클로즈 콜백이 언제나나 봅시다");          
             GameMain gameMain = GameObject.Find(SceneManager.GetActiveScene().name).GetComponent<GameMain>();
             gameMain.OnFocus();
         };

@@ -1,37 +1,59 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : CharacterBase
 {
+     
+     GameObject leftAttackSkillPos;
+     GameObject rightAttackSkillPos;
+
+    public AudioClip[] clips;
+
+    public AudioSource audioSource;
+
     internal override void OnInitialize(params object[] parameters)
-    {
-        string name = (string)parameters[0];
-        int level = (int)parameters[1];
-
-        LevelProperty property = LevelTable.GetProperty(level);
-        SetInfo(name, property);
+    {  
+        name = "player";
     }
 
-    public void Attack()
+    private void Start()
     {
-        m_animator.SetTrigger("Attack_1");
-        AssetManager.Instance.Trigger.Retrieve("NormalAttack", this);
+        audioSource = GetComponent<AudioSource>();        
+        leftAttackSkillPos = GameObject.Find("Jump_Position_Left");
+        rightAttackSkillPos = GameObject.Find("Jump_Position_Right");        
     }
 
-    public void Skill(int skillID)
+    private void FixedUpdate()
+    {          
+    }    
+
+    public void AttackLeft()
+    {       
+        m_animator.SetTrigger("Attack Left");
+        audioSource.clip = clips[0];
+        audioSource.Play();
+    }
+    public void AttackRight()
     {
-        m_animator.SetTrigger("Attack_2");
-        AssetManager.Instance.Trigger.Retrieve("SkillAttack", this);
+        m_animator.SetTrigger("Attack Right");
+        audioSource.clip = clips[1];
+        audioSource.Play();
     }
 
-    public void Move(Vector2 direction)
+    public void LeftAttackEvent()
     {
-        transform.forward = new Vector3(transform.forward.x + direction.y, transform.forward.y, transform.forward.z - direction.x);
-        m_animator.SetFloat("Speed", 1.0f);
-        transform.position = new Vector3(transform.position.x + (direction.y / 5.0f), transform.position.y, transform.position.z - (direction.x / 5.0f));
+        if (leftAttackSkillPos != null)
+        {            
+            AssetManager.Instance.Trigger.Retrieve("Left Attack", this,leftAttackSkillPos.transform.position);
+        }
+    }
+    public void RightAttackEvent()
+    {
+        if (rightAttackSkillPos != null)
+        {
+            AssetManager.Instance.Trigger.Retrieve("Right Attack", this, rightAttackSkillPos.transform.position);
+        }
     }
 
-    public void Stop()
-    {
-        m_animator.SetFloat("Speed", 0.0f);
-    }
+
 }

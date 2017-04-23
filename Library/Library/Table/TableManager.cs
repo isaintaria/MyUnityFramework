@@ -7,9 +7,10 @@ public sealed class TableManager
     {
     }
 
-    private static void LoadTable<T>(string tableName)
+    public static T LoadTable<T>(string tableName)
     {
         TextAsset table = AssetManager.Instance.Table.Retrieve(tableName);
-        TableSerializer.Derialize<T>(table.bytes);
+        var ret =   TableSerializer.Derialize<T>(table.bytes);
+        return ret;
     }
 }

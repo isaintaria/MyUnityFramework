@@ -5,8 +5,8 @@ public class TrackingCamera :MonoBehaviour
     private static Transform m_target;
 
     public  Vector3     m_offset;
-    public  float       m_distance      = 15.0f;
-    public  float		m_springness	= 4.0f;
+    public  float       m_distance      = 2.0f;
+    public  float		m_springness	= 2.0f;
 
     private Transform   m_myTransform   = null;
 
@@ -23,9 +23,7 @@ public class TrackingCamera :MonoBehaviour
     private Vector3 GetGoalPosition()
     {
         Vector3 goalPosition = Vector3.zero;
-
         goalPosition = m_target.position - m_myTransform.forward * m_distance;
-
         return goalPosition;
     }
 

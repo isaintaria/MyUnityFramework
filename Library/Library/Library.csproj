@@ -61,6 +61,7 @@
     <Compile Include="Asset\Factory\CachedAsset.cs" />
     <Compile Include="Asset\Factory\GameObjectFactory.cs" />
     <Compile Include="Asset\Factory\ScriptableObjectFactory.cs" />
+    <Compile Include="Asset\ObjectBase.cs" />
     <Compile Include="Character\Core\CharacterBase.cs" />
     <Compile Include="Character\Enemy.cs" />
     <Compile Include="Character\Player.cs" />
@@ -68,11 +69,13 @@
     <Compile Include="Data\LocalData.cs" />
     <Compile Include="Data\UserData.cs" />
     <Compile Include="Fx\FXBase.cs" />
-    <Compile Include="Game\Dungeon.cs" />
     <Compile Include="Game\GameMain.cs" />
     <Compile Include="Game\GameManager.cs" />
-    <Compile Include="Game\Lobby.cs" />
+    <Compile Include="Game\Scene1.cs" />
+    <Compile Include="Game\NGTest.cs" />
+    <Compile Include="Ingame\EnemyAIController.cs" />
     <Compile Include="Ingame\IngameManager.cs" />
+    <Compile Include="Ingame\PlayerController.cs" />
     <Compile Include="Ingame\SpawnGroup.cs" />
     <Compile Include="Ingame\TrackingCamera.cs" />
     <Compile Include="Input\InputDevice\CommonInput.cs" />
@@ -81,27 +84,37 @@
     <Compile Include="Input\InputDevice\ScreenInput.cs" />
     <Compile Include="Input\InputManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Table\TableItems\ItemTable.cs" />
+    <Compile Include="Table\TableItems\SpawnTable.cs" />
     <Compile Include="Table\TableManager.cs" />
     <Compile Include="Table\TableSerializer.cs" />
-    <Compile Include="Trigger\TargetTrigger.cs" />
-    <Compile Include="Trigger\TimeTrigger.cs" />
-    <Compile Include="Trigger\StaticTrigger.cs" />
+    <Compile Include="ThirdParty\EffectManager.cs" />
+    <Compile Include="ThirdParty\EffectOption.cs" />
+    <Compile Include="Table\TableItems\PortTable.cs" />
+    <Compile Include="Trigger\GameEndTrigger.cs" />
+    <Compile Include="Trigger\RightAttackTrigger.cs" />
+    <Compile Include="Trigger\LeftAttackTrigger.cs" />
     <Compile Include="Trigger\Core\TriggerBase.cs" />
+    <Compile Include="Trigger\GetObjectTrigger.cs" />
     <Compile Include="UI\Core\UIBase.cs" />
     <Compile Include="UI\Core\UIElement.cs" />
-    <Compile Include="UI\Core\UIManager.cs" />
+    <Compile Include="UI\UIManager.cs" />
     <Compile Include="UI\UIFade.cs" />
+    <Compile Include="UI\UIInfo.cs" />
     <Compile Include="UI\UILoading.cs" />
+    <Compile Include="UI\UIGameScene.cs" />
+    <Compile Include="Util\AssetBundleCreator.cs" />
     <Compile Include="Util\MonoSingleTon.cs" />
     <Compile Include="Util\SingleTon.cs" />
     <Compile Include="Game\Title.cs" />
     <Compile Include="Util\Util.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GameObject\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)Library.dll" "$(SolutionDir)..\RPG\Assets\Plugins"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)Library.dll" "C:\Users\isain\Desktop\Repository\PopupZombiePunch\PopupZombiePunch\Assets\Plugins"
+copy /Y "$(TargetDir)Library.pdb" "C:\Users\isain\Desktop\Repository\PopupZombiePunch\PopupZombiePunch\Assets\Plugins"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
